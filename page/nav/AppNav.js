@@ -8,6 +8,7 @@ import My from './../my/My';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 export default class AppNavigation extends Component<Props> {
+
     render() {
         return <AppStack/>
     };

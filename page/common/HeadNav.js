@@ -1,11 +1,13 @@
 import React ,{Component} from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
+import Icon1 from 'react-native-vector-icons/EvilIcons';
 import {
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
 } from 'react-native';
+let {width,height} =  require("Dimensions").get('window');
 export default class HeadNav extends Component<Props>{
     jumpPage = (page) =>{
         this.props.navigation.navigate(page);
@@ -14,19 +16,14 @@ export default class HeadNav extends Component<Props>{
         return(
             <View style={style.container}>
                 <View style={style.headerLeft}>
-                    {this.props.isBack ? <TouchableOpacity onPress={this.jumpPage.bind(this,this.props.page)}>
-                        <Text style={{width: 18, height: 18, marginLeft: 20}}>
-                            <Icon  name={'chevron-thin-left'}  size={20} color={'#F6FFF1'}/>
-                        </Text>
-                    </TouchableOpacity> : null}
-
+                    <View style={style.searchView}>
+                        <Icon1 style={style.searchIcon}  name={'search'}  size={20} color={'#A7A7A7'}/>
+                        <Text style={style.searchText}>搜索歌曲、歌手、有声电台...</Text>
+                    </View>
                 </View>
-                <View style={style.headerContent}>
-                    <Text style={{fontSize:20,color:'#FF734C', fontWeight:'bold'}}>{this.props.content}</Text>
-                </View >
                 <View style={style.headerRight}>
-                    <Text style={{marginRight: 20}}>
-                        <Icon  name={'magnifying-glass'}  size={20} color={'#F6FFF1'}/>
+                    <Text>
+                        <Icon  name={'beamed-note'}  size={23} color={'#010101'}/>
                     </Text>
                 </View>
             </View>
@@ -35,31 +32,50 @@ export default class HeadNav extends Component<Props>{
 }
 const style = StyleSheet.create({
     container:{
+        width: width,
         flexDirection:'row',
-        justifyContent:'center',
+        justifyContent:'flex-start',
         alignItems:'center',
         height:45,
-        backgroundColor:'#62CC4D',
+        backgroundColor:'#FFFFFF',
+        // backgroundColor:'red',
+        padding:5
     },
     headerLeft:{
-        flex:1,
+        width: width/1.1,
         height:'100%',
-        // backgroundColor:'#CC5745',
-        justifyContent:'center'
-    },
-    headerContent:{
-        flex:1,
-        height:'100%',
-        // backgroundColor:'#62CC4D',
         justifyContent:'center',
-        alignItems:'center'
     },
-    headerRight:{
+    searchIcon:{
+        marginLeft:10,
+    },
+    searchView:{
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center',
+        backgroundColor: '#F3F3F3',
+        height:'100%',
+        borderRadius:7
+    },
+    searchText:{
         flex:1,
+        color:'#AAAAAA',
+        marginLeft:20,
+        fontSize:13
+    },
+    // headerContent:{
+    //     flex:1,
+    //     height:'100%',
+    //     // backgroundColor:'#62CC4D',
+    //     justifyContent:'center',
+    //     alignItems:'center'
+    // },
+    headerRight:{
         height:'100%',
         // backgroundColor:'#CBCC41',
         justifyContent:'center',
-        alignItems:'flex-end'
+        marginLeft:5
+        // alignItems:'flex-end'
 
     },
 });
